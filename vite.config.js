@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/weather/' : '/',
   plugins: [
     tailwindcss(),
     VitePWA({
@@ -26,4 +27,4 @@ export default defineConfig({
       workbox: { navigateFallback: 'index.html' },
     }),
   ],
-})
+}))
